@@ -1,0 +1,162 @@
+{%extends 'administrator/admin.html'%}
+{%block title%}
+Bill
+{%endblock title%}
+{%block body%}
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <style>
+   
+    .invoice-box{
+        max-width: 800px;
+        margin:auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: Arial, sans-serif;
+    }
+
+    .invoice-box table{
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+
+    .invoice-box table td{
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2){
+        text-align: right;
+    }
+
+    .invoice-box table tr.top table td{
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.information table td{
+        padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td{
+        background-color: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.details td{
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td{
+       
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.total td{
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        background-color: #eee;
+    }
+
+    @media only screen and (max-width: 600px){
+        .invoice-box table tr.top table td{
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .invoice-box table tr.information table td{
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+  </style>
+    <form action="" method="POST">
+        {%csrf_token%}
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <b style="font-size: 34px">Sahyog Hospital</b>
+                            </td>
+                            <td>
+                                Bill No: {{billdetail.pk}}<br>
+                                Admit Date: {{discharge_detail.reg_date}} <br>
+                                Release Date: {{discharge_detail.discharge_date}}<br>
+                                Days spent: {{billdetail.no_of_days}}<br>
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                              
+                                Patient's Name: {{billdetail.pid.fname}} {{billdetail.pid.middlename}} {{billdetail.pid.lname}}<br>
+                                Patient's Phone: +91{{patientdet.contact_no}}<br>
+                                Patient's id: {{billdetail.pid.pk}}<br>
+                                Patient's Address: {{patientdet.address}}<br>
+                                Patient's Appoint ID: {{billdetail.appoint_id.pk}}<br>
+                            </td>
+                            <td>
+                                Doctor Name: {{billdetail.appoint_id.did.dname}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Symptoms</td>
+                <td></td>
+            </tr>
+            <tr class="details">
+              <td>{{billdetail.appoint_id.symptoms}}</td>
+            </tr>
+            <tr class="heading">
+                <td>Charges Detail</td>
+                <td>Price</td>
+            </tr>
+            <tr class="item">
+                <td>Room Charges(per day)</td>
+               <td>
+                {{billdetail.room_charges}}
+               </td>
+            </tr>
+            <tr class="item">
+                <td>Operation Charges</td>
+                <td>
+                  {{billdetail.operation_charges}}
+                </td>
+            </tr>
+            <tr class="item">
+                <td>Doctor Fee</td>
+                <td>
+                  {{billdetail.doctor_fee}}
+                </td>
+            </tr>
+            <tr class="item">
+                <td>Lab Report</td>
+                <td>
+                  {{billdetail.amount}}
+                </td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                <td>Total Rupees: <span id="total_rupees">{{billdetail.total_amount}}</span></td>
+            </tr>
+        </table>
+        
+    </div>
+</form>
+{% endblock body %}

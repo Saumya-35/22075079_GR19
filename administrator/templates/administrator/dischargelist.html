@@ -1,0 +1,95 @@
+{% extends 'administrator/admin.html' %}
+{% block body %}
+
+<style>
+    .green-icon {
+        color: green; 
+    }
+</style>
+<div class="container d-flex justify-content-between " style="margin-bottom:25px;">
+        <form class="form-inline my-2 my-lg-0" method="POST" action="{%url 'search-patient'%}">
+            {%csrf_token%}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Patient" aria-label="Search" name="searched">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            {%if cnt%}
+            <tr>
+                <th>Patient ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Doctor Name</th>
+                <th>Appointment ID</th>
+                <th>Phone No.</th>
+                <th>Discharge</th>
+            </tr>
+            {%else%}
+            <div class="container text-center"><h3>No Patient to Discharge</h3></div>
+            
+            {%endif%}
+        </thead>
+        <tbody>
+            {% for data in whole_details %}
+            {%if not data.appointment.dstatus and data.appointment.lstatus%}
+    <tr>
+        <td>{{ data.patient.pid }}</td>
+        <td>{{ data.patient.fname }}</td>
+        <td>{{ data.patient.lname }}</td>
+        <td>{{ data.doctor.dname }}</td>
+        <td>{{ data.appointment.pk }}</td>
+        <td>{{ data.pdet.contact_no }}</td>
+
+        <td class="d-flex justify-content-around">
+            
+            <a href="{%url 'bill' data.appointment.pk %}"> <i class="fas fa-user-check"></i></a>
+        </td>
+    </tr>
+    {%endif%}
+        
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<br><br>
+
+<hr>
+<hr>
+<div style="text-align: center;"><h3>Already Discharged</h3></div>
+<br>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Patient ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Doctor Name</th>
+                <th>Appointment ID</th>
+                <th>Phone No.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in whole_details %}
+            {%if data.appointment.dstatus and data.appointment.lstatus%}
+    <tr>
+        <td>{{ data.patient.pid }}</td>
+        <td>{{ data.patient.fname }}</td>
+        <td>{{ data.patient.lname }}</td>
+        <td>{{ data.doctor.dname }}</td>
+        <td>{{ data.appointment.pk }}</td>
+        <td>{{ data.pdet.contact_no }}</td>
+
+    </tr>
+    {%endif%}
+        
+{% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

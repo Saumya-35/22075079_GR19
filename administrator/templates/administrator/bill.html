@@ -1,0 +1,164 @@
+{%extends 'administrator/admin.html'%}
+{%block title%}
+Bill
+{%endblock title%}
+{%block body%}
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <style>
+   
+    .invoice-box{
+        max-width: 800px;
+        margin:auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: Arial, sans-serif;
+    }
+
+    .invoice-box table{
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+
+    .invoice-box table td{
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2){
+        text-align: right;
+    }
+
+    .invoice-box table tr.top table td{
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.information table td{
+        padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td{
+        background-color: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.details td{
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td{
+       
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.total td{
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        background-color: #eee;
+    }
+
+    @media only screen and (max-width: 600px){
+        .invoice-box table tr.top table td{
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .invoice-box table tr.information table td{
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+  </style>
+    <form action="{%url 'submit_data' discharge_detail.appoint_id.pk %}" method="POST">
+        {%csrf_token%}
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <b style="font-size: 34px">Sahyog Hospital</b>
+                            </td>
+                            <td>
+                                Admit Date: {{discharge_detail.reg_date}} <br>
+                                Release Date: {{discharge_detail.discharge_date}}<br>
+                                Days spent: {{noofdays}}<br>
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                              
+                                Patient's Name: {{discharge_detail.pid.fname}} {{discharge_detail.pid.middlename}} {{discharge_detail.pid.lname}}<br>
+                                Patient's id: {{discharge_detail.pid.pk}}<br>
+                                Patient's Phone: +91{{patient_detail.contact_no}}<br>
+                                Patient's Address: {{patient_detail.address}}<br>
+                                Patient's Appoint ID: {{discharge_detail.appoint_id.pk}}<br>
+                            </td>
+                            <td>
+                                Doctor Name: {{discharge_detail.appoint_id.did.dname}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Symptoms</td>
+                <td></td>
+            </tr>
+            <tr class="details">
+              <td>{{discharge_detail.appoint_id.symptoms}}</td>
+            </tr>
+            <tr class="heading">
+                <td>Charges Detail</td>
+                <td>Price</td>
+            </tr>
+            <tr class="item">
+                <td>Room Charges (per day)</td>
+               <td>
+                <input type="number" name="RoomCharges" placeholder="In Rupees" value="" >
+               </td>
+            </tr>
+            <tr class="item">
+                <td>Operation Charges</td>
+                <td>
+                  <input type="number" name="OperationCharges" placeholder="In Rupees" value="">
+                </td>
+            </tr>
+            <tr class="item">
+                <td>Doctor Fee</td>
+                <td>
+                  <input type="number" name="DoctorFee" placeholder="In Rupees" value="">
+                </td>
+            </tr>
+            <tr>
+              <td></td>
+      
+              <td>
+                <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded btn-primary" type="submit">
+                  Submit
+                </button>
+              </td>
+            </tr>
+
+        </table>
+        
+    </div>
+</form>
+
+
+
+{% endblock body %}

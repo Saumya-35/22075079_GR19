@@ -1,0 +1,36 @@
+{%extends 'administrator/admin.html'%}
+{%block body%}
+   
+<div class="container">
+  <table class="table table-bordered">
+      <thead class="thead-dark">
+          <tr>
+              <th>Patient ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th></th>
+      <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          {%for patient in patients%}
+          <tr>
+              <td>{{ patient.pid }}</td>
+              <td>{{ patient.fname }}</td>
+              <td>{{ patient.lname }}</td>
+              <td><a href="{%url 'viewpatientdetail' patient.pid %}" class="btn btn-primary">View</a></td>
+              <td class="d-flex justify-content-around">
+                  <a href="{%url 'update-patient' patient.pid %}"><i class="fas fa-edit"></i></a>
+                  <a href="{%url 'patient-confirm-delete' patient.pid%}"><i class="fas fa-trash-alt text-danger" style="color:red;"></i></a>
+              </td>
+          </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+</div>
+      <script>
+        document.getElementById("mybtn").addEventListener("click", function () {
+          window.location.href = "{% url 'add-patient' %}";
+        });
+      </script>
+{%endblock%}

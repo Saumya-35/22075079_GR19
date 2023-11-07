@@ -1,0 +1,17 @@
+{%extends 'administrator/admin.html'%}
+{%block content%}
+<div class="content-section">
+    <form action="" method="POST">
+        {%csrf_token%}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Patient</legend>
+            <h2>Are you sure you want to delete the Patient "{{patient}}"</h2>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+            <a class="btn btn-outline-secondary" href="{%url 'list-patient'%}">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{%endblock%}

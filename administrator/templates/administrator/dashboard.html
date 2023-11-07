@@ -1,0 +1,110 @@
+{%extends 'administrator/admin.html'%}
+{%block body%}
+<div class="row d-flex justify-content-around" style="margin-bottom: 55px;">
+    <div class="card text-center bg-primary  rounded btn btn-success" style="box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); border:3px solid black;">
+        <div class="card-body">
+          <h5 class="card-title">No. of Doctors</h5>
+          <p class="card-text">{{cntd}}</p>
+        </div>
+      </div>
+    <div class="card text-center bg-success roundedbtn btn-primary" style="box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); border:3px solid black ;">
+        <div class="card-body">
+          <h5 class="card-title">No. of Patients</h5>
+          <p class="card-text">{{cntpatient}}</p>
+        </div>
+      </div>
+    <div class="card text-center bg-danger rounded btn btn-danger" style="box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); border:3px solid black;">
+        <div class="card-body">
+          <h5 class="card-title">Other staff</h5>
+          <p class="card-text">100</p>
+        </div>
+      </div>
+</div>
+
+      <div class="container">
+        <div class="row mt-2 justify-content-center">
+            <div class="col-md-8">
+                <div>
+                    <canvas id="myChart"></canvas>
+                </div>
+    
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+                <script>
+                    const ctx = document.getElementById('myChart');
+    
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [{% for symp in noofpatsymp %} '{{symp.symptom}}',{% endfor %}],
+                            datasets: [{
+                                label: '# of Products',
+                                data: [{% for symp in noofpatsymp %} '{{symp.noofpat}}',{% endfor %}],
+                                borderWidth: 1,
+                                backgroundColor: [
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    // Add more colors as needed
+                                ],
+                                borderColor: [
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    // Add more border colors corresponding to the background colors
+                                ]
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Symptoms vs. Number of Patients'
+                                },
+                                legend: {
+                                    display: false // Hide the legend if not needed
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    stepSize: 1,
+                                    precision: 0,
+                                    title: {
+                                        display: true,
+                                        text: 'Number of Patients',
+                                        color: 'blue' // Customize the color of the y-axis title
+                                    },
+                                    grid: {
+                                    color: 'rgba(0, 0, 0, 0.5)', // Darken the y-axis grid lines
+                                }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Symptoms',
+                                        color: 'green' // Customize the color of the x-axis title
+                                    },
+                                    ticks: {
+                                        color: 'black' // Customize the color of the x-axis labels
+                                    },grid: {
+                                        color: 'rgba(0, 0, 0, 0.5)', // Darken the x-axis grid lines
+                                    }
+                                }
+                            }
+                        }
+                    });
+    
+                </script>
+            </div>
+        </div>
+    </div>
+    
+    
+{%endblock%}

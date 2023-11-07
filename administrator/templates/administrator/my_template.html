@@ -1,0 +1,6 @@
+
+<ul>
+        {% for patient in patients %}
+            <li>{{patient.pid}}:{{ patient.fname }}{{ patient.lname }}</li>
+        {% endfor %}
+    </ul>

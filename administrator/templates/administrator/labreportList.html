@@ -1,0 +1,59 @@
+{%extends 'administrator/admin.html'%}
+{%block body%}
+<center>
+    <H2> Lab Reports</H2>
+    {%for data in lab_detail %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+       .container ul li{
+             background-color: aqua;
+             border: 15px solid rebeccapurple ;
+             padding: 10px;
+             list-style: none;
+             margin-bottom: 10px;
+             display: flex;
+         }
+     </style>
+  <div class="container">
+    {%if data.labrep %}
+    <ul>
+        <form action="{%url 'view-report' data.labrep.report_no %}" method="POST">
+            {%csrf_token%}
+        <li style="background-color: aqua;">
+            <div class="container" style="text-align: left;">
+                <strong>Patient: </strong>{{data.app.pid.fname}} {{data.app.pid.lname}}<br>
+                <strong>Appoint ID: </strong>{{data.app.pk}} <br>
+                <strong>Doctor: </strong>{{data.app.did.dname}} <br>
+            </div>
+            <div class="container text-end" style="display: flex;
+            justify-content: flex-end;">
+                <input type="submit" value="View" class="btn btn-secondary" style="background-color:grey ;">
+                <!-- Add other appointment details as needed -->
+            </div>
+        </li>
+    </form>
+    </ul>
+  
+    {%else%}
+    <ul>
+        <form action="{%url 'add-lab-report' data.app.appoint_id %}" method="POST">
+            {%csrf_token%}
+        <li style="background-color:rgb(253, 174, 3);">
+            <div class="container" style="text-align: left;"> 
+                <strong>Patient: </strong>{{data.app.pid.fname}} {{data.app.pid.lname}}<br>
+                <strong>Appoint ID: </strong>{{data.app.pk}} <br>
+                <strong>Doctor: </strong>{{data.app.did.dname}} <br>
+            </div>
+            <div class="container text-end" style="display: flex;
+            justify-content: flex-end;">
+                <input type="submit" value="Add" class="btn btn-secondary" style="background-color:grey ;" >
+                <!-- Add other appointment details as needed -->
+            </div>
+        </li>
+    </form>
+    </ul>
+  </div>
+  {%endif%}
+{%endfor%}
+</center>
+{%endblock%}

@@ -1,0 +1,72 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Hospital Management System</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+            background-image: url('../../static/media/bg1.jpg'); /* Replace with the path to your background image */
+            background-size: cover; /* This will cover the whole viewport */
+            background-repeat: no-repeat;
+        }
+
+        .header {
+            text-align: center;
+            color: black;
+            padding: 100px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-size: 24px;
+            padding: 10px 20px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .container{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{%static 'media/xyz.png'%}" width="100" height="100">
+        <h1>Welcome to Sahyog Hospital</h1>
+        <p>Providing Quality Healthcare Services</p>
+        <div class="container">
+        <h3>About Us</h3>
+        <p>Sahyog Hospital is a leading healthcare provider dedicated to delivering high-quality, compassionate care to our community. With a team of skilled medical professionals and state-of-the-art facilities, we strive to ensure the well-being and satisfaction of every patient we serve.</p>
+        <h3>Our Services</h3>
+            <li><strong>General Medicine:</strong>Our experienced physicians provide comprehensive medical care for a wide range of health conditions.</li>
+            <li><strong>Specialized Care:</strong>We offer specialized services in various fields including cardiology, orthopedics, pediatrics, and more.</li>
+            <li><strong>Diagnostic Facilities:</strong>Our advanced diagnostic center is equipped with cutting-edge technology for accurate and timely diagnoses.</li>
+            <li><strong>Surgical Expertise:</strong>Our skilled surgeons perform a variety of surgical procedures with precision and care.</li>
+            <li><strong>Emergency Services:</strong>Our 24/7 emergency department is staffed with dedicated professionals to handle urgent medical needs.</li>
+
+        <h3>Patient-Centered Care</h3>
+        <p>At Sahyog Hospital, patient well-being is our top priority. We focus on personalized care plans, clear communication, and a comfortable healing environment.</p>
+        <h3>Contact Us</h3>
+        <p>For appointments, inquiries, or emergencies, please reach out to us at:</p>
+            <p><strong>Phone:</strong>+91 2589631475</p>
+            <p><strong>Email:</strong>sahyoghospital@gmail.com</p>
+            <p><strong>Address:</strong>India</p>
+
+        </p>
+    </div>
+    <p>We look forward to serving you and your loved ones with the highest standard of care.
+        <br>
+        <a href="{%url 'login'%}" class="btn btn-primary">Login</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

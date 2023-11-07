@@ -1,0 +1,46 @@
+{%extends 'administrator/admin.html'%}
+{%block body%}
+   
+    <div class="container">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Doctor ID</th>
+              <th>Doctor Name</th>
+              <th>Specialisation</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for doctor in doctors %}
+            <tr>
+              <td>{{ doctor.did }}</td>
+              <td>{{ doctor.dname }}</td>
+              <td>{{ doctor.specialisation }}</td>
+              <td>
+                <a
+                  href="{%url 'viewdoctordetail' doctor.did %}"
+                  class="btn btn-primary"
+                  >View</a
+                >
+              </td>
+              <td>
+                <a href="{%url 'update-doctor' doctor.did %}"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <a href="{%url 'doctor-confirm-delete' doctor.did%}"
+                  ><i class="fas fa-trash-alt"></i
+                ></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <script>
+        document.getElementById("mybtn").addEventListener("click", function () {
+          window.location.href = "{% url 'add-doctor' %}";
+        });
+      </script>
+{%endblock%}

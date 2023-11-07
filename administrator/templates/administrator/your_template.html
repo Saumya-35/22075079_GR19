@@ -1,0 +1,8 @@
+{% for specialization, doctors in grouped_doctors.items %}
+    <h2>{{ specialization }}</h2>
+    <ul>
+        {% for doctor in doctors %}
+            <li>{{doctor.did}}:{{ doctor.dname }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}

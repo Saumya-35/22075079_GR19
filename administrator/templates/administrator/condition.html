@@ -1,0 +1,18 @@
+{%extends 'administrator/admin.html'%}
+{%block body%}
+<center>
+    {% if submitted%}
+        Condition Added Successfully!!!
+        <button class="btn btn-secondary"><a href="{%url 'condition'%}" style="color:white; text-decoration:none;">Go back</a></button>
+    {% else %}
+        <form  method="POST" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" class="btn btn-secondary" style="background-color:grey ;">
+        </form>
+    {%endif%}
+    
+</center>
+
+
+{%endblock%}

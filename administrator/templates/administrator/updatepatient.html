@@ -1,0 +1,14 @@
+{%extends 'administrator/admin.html'%}
+{%block body%}
+
+    <h2>Update Patient...</h2>
+    <br>
+    <form action="" method="POST">
+        {%csrf_token%}
+        {{forma.as_p}}<br>
+        {{formb.as_p}}<br>
+        <input type="submit" value="Submit" class="btn btn-secondary" style="background-color: grey;">
+    </form>
+   
+
+{%endblock%}
