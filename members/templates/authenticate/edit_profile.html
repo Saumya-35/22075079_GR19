@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            background-color: #057ff9; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        body {
+    background: linear-gradient(to bottom, #28a745, #007bff ); /* Gradient from blue to green */
+    background-size: cover; /* Ensure the gradient covers the entire viewport */
+    }
+
+        .content-section {
+            background: #ffffff; /* White content background */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            padding: 20px; /* Add internal space within the content */
+            max-width: 500px; /* Set max width of the content */
+            width: 100%;
+        }
+
+        .account-img {
+            display: block;
+            margin: 0 auto;
+            width: 100px; /* Set the profile image width */
+            height: 100px; /* Set the profile image height */
+            border: 4px solid #007bff; /* Blue border */
+            border-radius: 50%; /* Make it a circle */
+        }
+
+        .account-heading {
+            color: #007bff; /* Blue heading color */
+            text-align: center;
+        }
+
+        .abs{
+            color: #000000;
+        }
+
+        form {
+            max-width: 100%;
+            width: 50%;
+            margin: 20px auto; /*Add some space around the form and center it */
+            padding: 20px; /*Add internal space within the form */
+            background-color: #ffffff; /* White background */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+        form .btn-secondary {
+        background-color: #007bff; /* Blue button background */
+        border: none;
+        width: 100%;
+    }
+
+    form .btn-secondary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    h1 {
+        color: black; /* Blue heading color */
+        text-align: center;
+    }
+    form .btn-secondary {
+        background-color: #007bff; /* Blue button background */
+        border: none;
+        width: 100%;
+    }
+
+    form .btn-secondary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+    </style>
+</head>
+<body>
+    <div class="container " style="flex-direction: column; margin: auto; display: flex; align-items: center;">
+    <h1>Edit Profile</h1>
+    <!-- Similar structure to your profile.html template -->
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-secondary">Save Changes</button>
+</form>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // Initialize Bootstrap alerts
+        $(".alert").alert();
+    </script>
+</body>
+</html>
